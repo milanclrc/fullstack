@@ -35,7 +35,7 @@ public class FilmRepo implements FilmStore {
         Optional<Film> existing = findById(id);
         existing.ifPresent(f -> {
             f.setTitre(film.getTitre());
-            f.setReal(film.getReal());
+            f.setRealisateur(film.getRealisateur());
             f.setDateSortie(film.getDateSortie());
             f.setGenre(film.getGenre());
         });
@@ -43,7 +43,7 @@ public class FilmRepo implements FilmStore {
     }
 
     @Override
-    public boolean deleteFilm(Film film) {
-        return listeFilms.removeIf(f -> f.getId().equals(film.getId()));
+    public boolean deleteFilm(Long id) {
+        return listeFilms.removeIf(f -> f.getId().equals(id));
     }
 }

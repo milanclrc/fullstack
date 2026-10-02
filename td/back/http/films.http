@@ -1,3 +1,9 @@
+# Ajout d'un film pour que la liste de départ ne soit pas vide
+POST http://localhost:8080/films
+Content-Type: application/json
+
+{"titre": "Alien", "realisateur": "Ridley Scott", "dateSortie": "1979-05-25", "genre": "SCIENCE_FICTION"}
+
 ### Liste des films
 GET http://localhost:8080/films
 Accept: application/json

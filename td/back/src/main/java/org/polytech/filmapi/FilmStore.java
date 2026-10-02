@@ -9,5 +9,5 @@ public interface FilmStore {
     Optional<Film> findById(Long id);
     Film addFilm(Film film);
     Optional<Film> updateFilm(Long id, Film film);
-    boolean deleteFilm(Film film);
+    boolean deleteFilm(Long id);
 }

@@ -1,19 +1,23 @@
 package org.polytech.filmapi;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
 public class Film {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+
+    @NotBlank(message = "titre obligatoire")
     private String titre;
-    private String real;
+
+    @NotBlank(message = "réalisateur obligatoire")
+    private String realisateur;
+
     private LocalDate dateSortie;
     private Genre genre;
 
@@ -21,7 +25,7 @@ public class Film {
     public Film(Long id, String titre, String real, LocalDate dateSortie, Genre genre) {
         this.id = id;
         this.titre = titre;
-        this.real = real;
+        this.realisateur = real;
         this.dateSortie = dateSortie;
         this.genre = genre;
     }
@@ -38,11 +42,11 @@ public class Film {
     public void setTitre(String titre) {
         this.titre = titre;
     }
-    public String getReal() {
-        return real;
+    public String getRealisateur() {
+        return realisateur;
     }
-    public void setReal(String real) {
-        this.real = real;
+    public void setRealisateur(String realisateur) {
+        this.realisateur = realisateur;
     }
     public LocalDate getDateSortie() {
         return dateSortie;
