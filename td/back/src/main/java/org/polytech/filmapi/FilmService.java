@@ -30,7 +30,7 @@ public class FilmService {
     public FilmDto addFilm(FilmCreationDto body) {
         Film film = new Film();
         film.setTitre(body.titre());
-        film.setRealisateur(body.realisateur()); // Corrigé ici
+        film.setRealisateur(body.realisateur());
         film.setDateSortie(body.dateSortie());
         film.setGenre(body.genre());
 
@@ -44,7 +44,7 @@ public class FilmService {
                 .orElseThrow(() -> new FilmNotFoundException(id));
 
         existing.setTitre(body.titre());
-        existing.setRealisateur(body.realisateur()); // Corrigé ici
+        existing.setRealisateur(body.realisateur());
         existing.setDateSortie(body.dateSortie());
         existing.setGenre(body.genre());
 

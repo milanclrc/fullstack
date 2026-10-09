@@ -3,7 +3,6 @@ package org.polytech.filmapi;
 public final class FilmMapper {
 
     private FilmMapper() {
-        // Constructeur privé
     }
 
     public static FilmDto toDto(Film film) {

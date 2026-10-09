@@ -1,6 +1,8 @@
 package org.polytech.filmapi;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -27,6 +29,10 @@ public class Film {
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    @ManyToMany
+    @JoinTable(name="acteur")
+    private List<Acteur> acteurs = new ArrayList<>();
 
     public Film() {
     }
