@@ -1,4 +1,4 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.film;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.film;
 
 public final class FilmMapper {
 

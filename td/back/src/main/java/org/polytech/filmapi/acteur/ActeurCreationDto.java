@@ -1,4 +1,4 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.acteur;
 
 import jakarta.validation.constraints.NotBlank;
 

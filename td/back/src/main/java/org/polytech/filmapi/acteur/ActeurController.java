@@ -1,5 +1,6 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.acteur;
 
+import org.polytech.filmapi.film.FilmDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

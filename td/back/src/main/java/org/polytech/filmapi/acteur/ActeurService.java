@@ -1,5 +1,7 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.acteur;
 
+import org.polytech.filmapi.film.FilmDto;
+import org.polytech.filmapi.film.FilmMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

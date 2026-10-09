@@ -1,4 +1,4 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.acteur;
 
 public record ActeurDto (
     Long id,

@@ -1,4 +1,4 @@
-package org.polytech.filmapi;
+package org.polytech.filmapi.film;
 
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
