@@ -48,3 +48,13 @@ DELETE http://localhost:8080/films/1
 ### Identifiant inconnu — réponse attendue : 404 au format ProblemDetail
 GET http://localhost:8080/films/9999
 Accept: application/json
+
+###
+POST http://localhost:8080/acteurs
+Content-Type: application/json
+
+{
+  "nom": "Cruise",
+  "prenom": "Tom"
+}
+
