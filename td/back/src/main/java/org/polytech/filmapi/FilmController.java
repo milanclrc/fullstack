@@ -1,9 +1,12 @@
 package org.polytech.filmapi;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,24 +20,26 @@ public class FilmController {
     }
 
     @GetMapping
-    public List<Film> getAll() {
+    public List<FilmDto> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Film get(@PathVariable Long id) {
+    public FilmDto get(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Film create(@Valid @RequestBody Film film) {
-        return service.addFilm(film);
+    public ResponseEntity<FilmDto> create(@Valid @RequestBody FilmCreationDto body) {
+        FilmDto created = service.addFilm(body);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(created.id()).toUri();
+        return ResponseEntity.created(uri).body(created);
     }
 
     @PutMapping("/{id}")
-    public Film update(@PathVariable Long id, @RequestBody Film film) {
-        return service.updateFilm(id, film);
+    public FilmDto update(@PathVariable Long id, @Valid @RequestBody FilmCreationDto body) {
+        return service.updateFilm(id, body);
     }
 
     @DeleteMapping("/{id}")

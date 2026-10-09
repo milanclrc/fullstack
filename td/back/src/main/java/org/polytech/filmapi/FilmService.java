@@ -1,39 +1,60 @@
 package org.polytech.filmapi;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class FilmService {
 
-    private final FilmStore repo;
+    private final FilmRepo repo;
 
-    public FilmService(FilmStore repo) {
+    public FilmService(FilmRepo repo) {
         this.repo = repo;
     }
 
-    public List<Film> findAll() {
-        return repo.findAll();
+    public List<FilmDto> findAll() {
+        return repo.findAll().stream()
+                .map(FilmMapper::toDto)
+                .toList();
     }
 
-    public Film findById(Long id) {
-        return repo.findById(id)
+    public FilmDto findById(Long id) {
+        Film film = repo.findById(id)
                 .orElseThrow(() -> new FilmNotFoundException(id));
+        return FilmMapper.toDto(film);
     }
 
-    public Film addFilm(Film film) {
-        return repo.addFilm(film);
+    @Transactional
+    public FilmDto addFilm(FilmCreationDto body) {
+        Film film = new Film();
+        film.setTitre(body.titre());
+        film.setRealisateur(body.realisateur()); // Corrigé ici
+        film.setDateSortie(body.dateSortie());
+        film.setGenre(body.genre());
+
+        Film saved = repo.save(film);
+        return FilmMapper.toDto(saved);
     }
 
-    public Film updateFilm(Long id, Film film) {
-        return repo.updateFilm(id, film)
+    @Transactional
+    public FilmDto updateFilm(Long id, FilmCreationDto body) {
+        Film existing = repo.findById(id)
                 .orElseThrow(() -> new FilmNotFoundException(id));
+
+        existing.setTitre(body.titre());
+        existing.setRealisateur(body.realisateur()); // Corrigé ici
+        existing.setDateSortie(body.dateSortie());
+        existing.setGenre(body.genre());
+
+        return FilmMapper.toDto(existing);
     }
 
     public void deleteFilm(Long id) {
-        if (!repo.deleteFilm(id)) {
+        if (!repo.existsById(id)) {
             throw new FilmNotFoundException(id);
         }
+        repo.deleteById(id);
     }
 }

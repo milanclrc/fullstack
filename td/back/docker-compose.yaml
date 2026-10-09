@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:16.15
+    environment:
+      POSTGRES_DB: filmdb
+      POSTGRES_USER: film
+      POSTGRES_PASSWORD: film
+    ports:
+      - "5433:5432"
